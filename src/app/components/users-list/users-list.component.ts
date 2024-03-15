@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { UsersApiService } from '../../services/users-api.service';
 import { User } from '../../types/users.interface';
 import { UserCardComponent } from '../user-card/user-card.component';
 import { CommonModule } from '@angular/common';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-users-list',
@@ -15,9 +16,26 @@ import { CommonModule } from '@angular/common';
 export class UsersListComponent {
   users: User[] = [];
 
-  constructor(private usersApiService: UsersApiService) {
+  constructor(
+    private usersApiService: UsersApiService,
+    private usersService: UsersService
+  ) {
+    this.fetchUsers();
+  }
+
+  fetchUsers(): void {
     this.usersApiService.getUsers().subscribe((users) => {
-      this.users = users;
+      this.usersService.setUsers(users);
+      this.updateLocalUsers();
     });
+  }
+
+  private updateLocalUsers(): void {
+    this.users = this.usersService.getUsers();
+  }
+
+  deleteUser(userId: number): void {
+    this.usersService.deleteUser(userId);
+    this.updateLocalUsers();
   }
 }

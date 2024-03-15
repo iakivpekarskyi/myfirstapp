@@ -13,8 +13,12 @@ export class UsersService {
     return this.users;
   }
 
+  setUsers(users: User[]): void {
+    this.users = users;
+  }
+
   addUser(user: User): void {
-    this.users.concat(user);
+    this.users.push(user);
   }
 
   deleteUser(id: number): void {

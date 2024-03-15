@@ -1,0 +1,9 @@
+.user-table {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.user-card-wrapper {
+  width: calc(25% - 10px);
+}
