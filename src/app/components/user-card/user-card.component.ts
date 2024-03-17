@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { User } from '../../types/users.interface';
 import { UsersService } from '../../services/users.service';
-import { DeleteButtonComponent } from '../delete-button/delete-button.component';
+import { DeleteButtonComponent } from '../buttons/delete-button/delete-button.component';
 
 @Component({
   selector: 'app-user-card',
