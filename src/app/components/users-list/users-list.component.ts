@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { UsersService } from '../../services/users.service';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { AddUserButtonComponent } from '../buttons/add-user-button/add-user-button.component';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateEditUserModalComponent } from '../modal/create-edit-user-modal/create-edit-user-modal.component';
 
 @Component({
   selector: 'app-users-list',
@@ -25,9 +27,23 @@ export class UsersListComponent {
 
   constructor(
     private usersApiService: UsersApiService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private dialog: MatDialog
   ) {
     this.fetchUsers();
+  }
+
+  onAddUserClick(): void {
+    const dialogRef = this.dialog.open(CreateEditUserModalComponent, {
+      width: '250px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.usersService.addUser(result);
+        this.updateLocalUsers();
+      }
+    });
   }
 
   fetchUsers(): void {
