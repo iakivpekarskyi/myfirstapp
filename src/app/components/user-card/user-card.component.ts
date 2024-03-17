@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { User } from '../../types/users.interface';
 import { UsersService } from '../../services/users.service';
-import { DeleteButtonComponent } from '../buttons/delete-button/delete-button.component';
+import { DeleteUserButtonComponent } from '../buttons/delete-user-button/delete-user-button.component';
 
 @Component({
   selector: 'app-user-card',
   standalone: true,
-  imports: [DeleteButtonComponent],
+  imports: [DeleteUserButtonComponent],
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.scss',
 })

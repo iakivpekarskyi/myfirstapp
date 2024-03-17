@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteButtonComponent } from './delete-button.component';
+import { AddUserButtonComponent } from './add-user-button.component';
 
-describe('DeleteButtonComponent', () => {
-  let component: DeleteButtonComponent;
-  let fixture: ComponentFixture<DeleteButtonComponent>;
+describe('AddUserButtonComponent', () => {
+  let component: AddUserButtonComponent;
+  let fixture: ComponentFixture<AddUserButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DeleteButtonComponent]
+      imports: [AddUserButtonComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(DeleteButtonComponent);
+    fixture = TestBed.createComponent(AddUserButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
