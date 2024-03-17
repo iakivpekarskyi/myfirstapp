@@ -35,7 +35,7 @@ export class UsersListComponent {
 
   onAddUserClick(): void {
     const dialogRef = this.dialog.open(CreateEditUserModalComponent, {
-      width: '250px',
+      width: '450px',
     });
 
     dialogRef.afterClosed().subscribe((result) => {

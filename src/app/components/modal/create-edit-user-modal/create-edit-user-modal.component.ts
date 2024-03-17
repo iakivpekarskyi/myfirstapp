@@ -18,7 +18,7 @@ export class CreateEditUserModalComponent {
     this.userForm = this.fb.group({
       name: ['', Validators.required],
       username: ['', Validators.required],
-      email: ['', Validators.required, Validators.email],
+      email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required],
     });
   }
