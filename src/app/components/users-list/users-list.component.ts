@@ -1,15 +1,21 @@
-import { Component, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { UsersApiService } from '../../services/users-api.service';
 import { User } from '../../types/users.interface';
 import { UserCardComponent } from '../user-card/user-card.component';
 import { CommonModule } from '@angular/common';
 import { UsersService } from '../../services/users.service';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { AddUserButtonComponent } from '../buttons/add-user-button/add-user-button.component';
 
 @Component({
   selector: 'app-users-list',
   standalone: true,
-  imports: [UserCardComponent, CommonModule, MatGridListModule],
+  imports: [
+    UserCardComponent,
+    CommonModule,
+    MatGridListModule,
+    AddUserButtonComponent,
+  ],
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.scss',
   providers: [UsersApiService],
