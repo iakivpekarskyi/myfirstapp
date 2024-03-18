@@ -5,9 +5,10 @@ import { UserCardComponent } from '../user-card/user-card.component';
 import { CommonModule } from '@angular/common';
 import { UsersService } from '../../services/users.service';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { AddUserButtonComponent } from '../buttons/add-user-button/add-user-button.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateEditUserModalComponent } from '../modal/create-edit-user-modal/create-edit-user-modal.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-users-list',
@@ -16,7 +17,8 @@ import { CreateEditUserModalComponent } from '../modal/create-edit-user-modal/cr
     UserCardComponent,
     CommonModule,
     MatGridListModule,
-    AddUserButtonComponent,
+    MatButtonModule,
+    MatIconModule,
   ],
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.scss',
@@ -24,6 +26,8 @@ import { CreateEditUserModalComponent } from '../modal/create-edit-user-modal/cr
 })
 export class UsersListComponent {
   users: User[] = [];
+
+  @Output() addUserClick: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(
     private usersApiService: UsersApiService,
