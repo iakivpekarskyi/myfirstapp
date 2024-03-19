@@ -1,16 +1,14 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { User } from '../../interface/users.interface';
-
 import { CommonModule } from '@angular/common';
-
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateEditUserModalComponent } from '../create-edit-user/create-edit-user.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { UsersApiService } from '../../../core/services/users-api.service';
 import { UsersService } from '../../../core/services/users.service';
 import { UserCardComponent } from './user-card/user-card.component';
+import { CreateEditUserComponent } from '../create-edit-user/create-edit-user.component';
+import { User } from '../../interface/users.interface';
 
 @Component({
   selector: 'app-users-list',
@@ -37,7 +35,7 @@ export class UsersListComponent {
   }
 
   onAddUserClick(): void {
-    const dialogRef = this.dialog.open(CreateEditUserModalComponent, {
+    const dialogRef = this.dialog.open(CreateEditUserComponent, {
       width: '450px',
     });
 
@@ -56,5 +54,18 @@ export class UsersListComponent {
 
   deleteUser(userId: number): void {
     this.usersService.deleteUser(userId);
+  }
+
+  editUser(user: User): void {
+    const dialogRef = this.dialog.open(CreateEditUserComponent, {
+      width: '450px',
+      data: user,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.usersService.editUser(result);
+      }
+    });
   }
 }

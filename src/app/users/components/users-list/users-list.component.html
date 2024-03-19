@@ -1,6 +1,6 @@
 <mat-grid-list cols="4" rowHeight="1:1" class="user-table">
    <mat-grid-tile *ngFor="let user of usersService.users" class="user-card-wrapper">
-      <app-user-card [user]="user" (deleteUser)="deleteUser($event)"></app-user-card>
+      <app-user-card [user]="user" (editUser)="editUser($event)" (deleteUser)="deleteUser($event)"></app-user-card>
    </mat-grid-tile>
 </mat-grid-list>
 

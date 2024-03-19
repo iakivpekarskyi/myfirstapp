@@ -13,6 +13,13 @@ export class UsersService {
     return this.users;
   }
 
+  editUser(updatedUser: User): void {
+    const index = this.users.findIndex((user) => user.id === updatedUser.id);
+    if (index !== -1) {
+      this.users[index] = updatedUser;
+    }
+  }
+
   setUsers(users: User[]): void {
     this.users = users;
   }
