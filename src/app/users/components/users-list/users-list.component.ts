@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { User } from '../../constants/types/users.interface';
+import { User } from '../../interface/users.interface';
 
 import { CommonModule } from '@angular/common';
 
@@ -24,16 +24,13 @@ import { UserCardComponent } from './user-card/user-card.component';
   ],
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.scss',
-  providers: [UsersApiService],
 })
 export class UsersListComponent {
-  users: User[] = [];
-
   @Output() addUserClick: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(
     private usersApiService: UsersApiService,
-    private usersService: UsersService,
+    public usersService: UsersService,
     private dialog: MatDialog
   ) {
     this.fetchUsers();
@@ -47,7 +44,6 @@ export class UsersListComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.usersService.addUser(result);
-        this.updateLocalUsers();
       }
     });
   }
@@ -55,16 +51,10 @@ export class UsersListComponent {
   fetchUsers(): void {
     this.usersApiService.getUsers().subscribe((users) => {
       this.usersService.setUsers(users);
-      this.updateLocalUsers();
     });
-  }
-
-  private updateLocalUsers(): void {
-    this.users = this.usersService.getUsers();
   }
 
   deleteUser(userId: number): void {
     this.usersService.deleteUser(userId);
-    this.updateLocalUsers();
   }
 }

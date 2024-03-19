@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { User } from '../constants/types/users.interface';
+import { User } from '../../users/interface/users.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  private users: User[] = [];
+  public users: User[] = [];
 
   constructor() {}
 
