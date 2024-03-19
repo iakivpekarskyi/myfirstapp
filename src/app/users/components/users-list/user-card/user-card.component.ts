@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { User } from '../../types/users.interface';
-import { UsersService } from '../../services/users.service';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { UsersService } from '../../../../core/services/users.service';
+import { User } from '../../../constants/types/users.interface';
 
 @Component({
   selector: 'app-user-card',

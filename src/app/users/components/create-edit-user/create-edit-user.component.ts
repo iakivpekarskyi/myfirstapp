@@ -8,8 +8,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   selector: 'app-create-edit-user-modal',
   standalone: true,
   imports: [MatDialogModule, MatFormFieldModule, ReactiveFormsModule],
-  templateUrl: './create-edit-user-modal.component.html',
-  styleUrl: './create-edit-user-modal.component.scss',
+  templateUrl: './create-edit-user.component.html',
+  styleUrl: './create-edit-user.component.scss',
 })
 export class CreateEditUserModalComponent {
   userForm: FormGroup;

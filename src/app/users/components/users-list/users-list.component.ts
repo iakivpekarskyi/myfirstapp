@@ -1,14 +1,16 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { UsersApiService } from '../../services/users-api.service';
-import { User } from '../../types/users.interface';
-import { UserCardComponent } from '../user-card/user-card.component';
+import { User } from '../../constants/types/users.interface';
+
 import { CommonModule } from '@angular/common';
-import { UsersService } from '../../services/users.service';
+
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateEditUserModalComponent } from '../modal/create-edit-user-modal/create-edit-user-modal.component';
+import { CreateEditUserModalComponent } from '../create-edit-user/create-edit-user.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { UsersApiService } from '../../../core/services/users-api.service';
+import { UsersService } from '../../../core/services/users.service';
+import { UserCardComponent } from './user-card/user-card.component';
 
 @Component({
   selector: 'app-users-list',
