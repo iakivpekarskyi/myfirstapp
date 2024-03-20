@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { User } from '../../../interface/users.interface';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateEditUserComponent } from '../../create-edit-user/create-edit-user.component';
 
 @Component({
   selector: 'app-user-card',
@@ -29,20 +28,8 @@ export class UserCardComponent {
 
   constructor(public dialog: MatDialog) {}
 
-  openDialog(user?: User): void {
-    const dialogRef = this.dialog.open(CreateEditUserComponent, {
-      data: user,
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.editUser.emit(result);
-      }
-    });
-  }
-
   onEditClick(): void {
-    this.openDialog(this.user);
+    this.editUser.emit(this.user);
   }
 
   onDeleteClick(): void {

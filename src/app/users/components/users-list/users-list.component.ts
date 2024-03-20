@@ -35,9 +35,7 @@ export class UsersListComponent {
   }
 
   onAddUserClick(): void {
-    const dialogRef = this.dialog.open(CreateEditUserComponent, {
-      width: '450px',
-    });
+    const dialogRef = this.dialog.open(CreateEditUserComponent, {});
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
@@ -58,7 +56,6 @@ export class UsersListComponent {
 
   editUser(user: User): void {
     const dialogRef = this.dialog.open(CreateEditUserComponent, {
-      width: '450px',
       data: user,
     });
 
