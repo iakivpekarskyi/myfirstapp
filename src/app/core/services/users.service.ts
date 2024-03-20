@@ -14,10 +14,9 @@ export class UsersService {
   }
 
   editUser(updatedUser: User): void {
-    const index = this.users.findIndex((user) => user.id === updatedUser.id);
-    if (index !== -1) {
-      this.users[index] = updatedUser;
-    }
+    this.users = this.users.map((user) =>
+      user.id === updatedUser.id ? updatedUser : user
+    );
   }
 
   setUsers(users: User[]): void {

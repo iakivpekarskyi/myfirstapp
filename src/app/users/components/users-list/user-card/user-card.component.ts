@@ -14,26 +14,35 @@ import { CreateEditUserComponent } from '../../create-edit-user/create-edit-user
   styleUrl: './user-card.component.scss',
 })
 export class UserCardComponent {
-  @Input({ required: true }) user!: User;
+  private _user!: User;
+
+  @Input() set user(value: User) {
+    this._user = value;
+  }
+
+  get user(): User {
+    return this._user;
+  }
+
   @Output() deleteUser: EventEmitter<number> = new EventEmitter<number>();
   @Output() editUser: EventEmitter<User> = new EventEmitter<User>();
 
   constructor(public dialog: MatDialog) {}
 
-  openDialog(user?: any): void {
+  openDialog(user?: User): void {
     const dialogRef = this.dialog.open(CreateEditUserComponent, {
       data: user,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('User data:', result);
+        this.editUser.emit(result);
       }
     });
   }
 
   onEditClick(): void {
-    this.editUser.emit(this.user);
+    this.openDialog(this.user);
   }
 
   onDeleteClick(): void {

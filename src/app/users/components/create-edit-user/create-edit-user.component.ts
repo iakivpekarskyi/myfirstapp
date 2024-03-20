@@ -11,11 +11,18 @@ import {
   MatDialogModule,
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { User } from '../../interface/users.interface';
 
 @Component({
   selector: 'app-create-edit-user-modal',
   standalone: true,
-  imports: [MatDialogModule, ReactiveFormsModule, MatFormFieldModule],
+  imports: [
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+  ],
   templateUrl: './create-edit-user.component.html',
   styleUrls: ['./create-edit-user.component.scss'],
 })
@@ -26,7 +33,7 @@ export class CreateEditUserComponent {
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<CreateEditUserComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: User
   ) {
     this.isEdit = !!data;
     this.userForm = this.fb.group({
@@ -41,9 +48,13 @@ export class CreateEditUserComponent {
     }
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.userForm.valid) {
-      this.dialogRef.close(this.userForm.value);
+      const updatedUser = { ...this.userForm.value };
+      if (this.isEdit) {
+        updatedUser.id = this.data.id;
+      }
+      this.dialogRef.close(updatedUser);
     }
   }
 }
